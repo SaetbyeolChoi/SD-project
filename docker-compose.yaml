@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  extract:
+    image: ./extract
+  tranform:
+    image: ./tranform
+  load:
+    image: ./load
+  redis:
+    image: redis
+    volumes:
+      - cache:/data
+    ports:
+      - '6379:6379'
+  sql:
+    image: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data/db:/var/lib/postfresql/data # PostgresSQL bind mount
+
+volumes:
+  cache: # name of shared volume
