@@ -1,0 +1,59 @@
+# Should implement a service with a load balancer, deployment with pods and each pods should be based on the compose file
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadbalancer
+spec:
+  selector:
+    app.kubernetes.io/name: MyApp
+  ports:
+    - protocol: TCP # internet access
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  ports:
+    - protocol: TCP # redis
+      port: 6379
+      targetPort: 6379
+  type: ClusterIP # only internal access needed
+
+
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: postgres
+spec:
+  ports:
+    - protocol: TCP # postgres
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP # only internal access needed
+
+---
+apiVersion: app/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec: # for pods
+  replicas: 3
+  selector:
+    matchLabels:
+      app: etl
+  template:
+    metadata:
+      labels:
+        app: etl
+    spec:
+      containers: # TODO: Replace this with your own docker images
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
