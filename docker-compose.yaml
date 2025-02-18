@@ -1,11 +1,11 @@
 version: "3.9"
 services:
   extract:
-    image: ./extract
+    build: ./extract
   tranform:
-    image: ./tranform
+    build: ./transform
   load:
-    image: ./load
+    build: ./load
   redis:
     image: redis
     volumes:
