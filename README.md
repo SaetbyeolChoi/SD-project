@@ -23,3 +23,9 @@ Load data into the data warehouse
 ## Data Queue
 Redis queues will take data from each pipeline portion once their respective process is complete.
 
+## Docker
+Using docker-compose to containerize the application
+
+## Kubernetes
+Using [Kompose](https://kompose.io/installation/) To comvert docker containers to kubernetes services
+
