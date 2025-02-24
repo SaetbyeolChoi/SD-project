@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: snowflake
+    database: MYDB_H
+    schema: MY_SCHEMA_H
+    tables:
+      - name: PBJ_DAILY_NURSE_STAFFING
+      - name: NH_PROVIDERINFO
+      - name: NH_QUALITYMSR_CLAIMS
