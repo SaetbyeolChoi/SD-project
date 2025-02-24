@@ -1,0 +1,114 @@
+
+version: 2
+
+models:
+  - name: staffing_metrics
+    description: "Total hours worked by nurses per hospital and state"
+    columns:
+      - name: hospital_id
+        description: "Unique identifier for the hospital"
+        tests:
+          - not_null
+          - unique
+      - name: state
+        description: "State where the hospital is located"
+        tests:
+          - not_null
+      - name: month
+        description: "Month for which staffing hours are calculated"
+        tests:
+          - not_null
+      - name: total_nurse_hours
+        description: "Total hours worked by all nurses"
+        tests:
+          - not_null
+
+  - name: facility_metrics
+    description: "Bed utilization rates by hospital"
+    columns:
+      - name: hospital_id
+        description: "Unique identifier for the hospital"
+        tests:
+          - not_null
+          - unique
+      - name: state
+        description: "State where the hospital is located"
+        tests:
+          - not_null
+      - name: certified_beds  
+        description: "Total number of certified beds"
+        tests:
+          - not_null
+      - name: avg_residents_per_day 
+        description: "Average number of residents per day"
+        tests:
+          - not_null
+      - name: bed_utilization_rate
+        description: "Calculated bed utilization rate"
+        tests:
+          - not_null
+
+  - name: quality_metrics
+    description: "Readmission rates within 30 days by hospital"
+    columns:
+      - name: hospital_id
+        tests:
+          - not_null
+      - name: state
+        tests:
+          - not_null
+      - name: diagnosis_category
+        description: "Category of diagnosis for readmission"
+        tests:
+          - not_null
+      - name: readmission_rate
+        description: "Readmission rate percentage"
+        tests:
+          - not_null
+
+  - name: cost_metrics
+    description: "Total payroll cost estimation"
+    columns:
+      - name: hospital_id
+        tests:
+          - not_null
+      - name: state
+        tests:
+          - not_null
+      - name: estimated_payroll
+        description: "Total estimated payroll cost for nurses"
+        tests:
+          - not_null
+
+  - name: operational_metrics
+    description: "Permanent-to-contract nurse staff ratio"
+    columns:
+      - name: hospital_id
+        tests:
+          - not_null
+      - name: state
+        tests:
+          - not_null
+      - name: month
+        tests:
+          - not_null
+      - name: total_rn_hours_emp
+        description: "Total registered nurse (RN) hours worked by employed staff"
+        tests:
+          - not_null
+      - name: total_lpn_hours
+        description: "Total licensed practical nurse (LPN) hours worked"
+        tests:
+          - not_null
+      - name: total_cna_hours
+        description: "Total certified nursing assistant (CNA) hours worked"
+        tests:
+          - not_null
+      - name: total_rn_hours_contract
+        description: "Total RN hours worked by contracted staff"
+        tests:
+          - not_null
+      - name: permanent_to_contract_ratio
+        description: "Ratio of permanent to contract nurse staff"
+        tests:
+          - not_null
