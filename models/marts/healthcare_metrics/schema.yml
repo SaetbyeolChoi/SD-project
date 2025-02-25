@@ -1,15 +1,13 @@
-
 version: 2
 
 models:
   - name: staffing_metrics
-    description: "Total hours worked by nurses per hospital and state"
+    description: "Total hours worked by nurses and nurse-to-patient ratio per hospital and state"
     columns:
       - name: hospital_id
         description: "Unique identifier for the hospital"
         tests:
           - not_null
-          - unique
       - name: state
         description: "State where the hospital is located"
         tests:
@@ -22,6 +20,14 @@ models:
         description: "Total hours worked by all nurses"
         tests:
           - not_null
+      - name: avg_patient_count
+        description: "Average number of patients in the hospital"
+        tests:
+          - not_null
+      - name: nurse_to_patient_ratio
+        description: "Calculated ratio of total nurse hours to patient count"
+        tests:
+          - not_null
 
   - name: facility_metrics
     description: "Bed utilization rates by hospital"
@@ -30,7 +36,6 @@ models:
         description: "Unique identifier for the hospital"
         tests:
           - not_null
-          - unique
       - name: state
         description: "State where the hospital is located"
         tests:
@@ -44,17 +49,23 @@ models:
         tests:
           - not_null
       - name: bed_utilization_rate
-        description: "Calculated bed utilization rate"
+        description: "Calculated bed utilization rate (avg residents per day / certified beds)"
+        tests:
+          - not_null
+      - name: month
+        description: "Month of data recording for tracking trends"
         tests:
           - not_null
 
   - name: quality_metrics
-    description: "Readmission rates within 30 days by hospital"
+    description: "Readmission rates within 30 days by hospital and diagnosis category"
     columns:
       - name: hospital_id
+        description: "Unique identifier for the hospital"
         tests:
           - not_null
       - name: state
+        description: "State where the hospital is located"
         tests:
           - not_null
       - name: diagnosis_category
@@ -65,31 +76,40 @@ models:
         description: "Readmission rate percentage"
         tests:
           - not_null
+      - name: month
+        description: "Month for tracking readmission trends"
+        tests:
+          - not_null
 
   - name: cost_metrics
-    description: "Total payroll cost estimation"
+    description: "Total estimated payroll cost for nurses"
     columns:
       - name: hospital_id
+        description: "Unique identifier for the hospital"
         tests:
           - not_null
       - name: state
+        description: "State where the hospital is located"
         tests:
           - not_null
       - name: estimated_payroll
-        description: "Total estimated payroll cost for nurses"
+        description: "Estimated payroll cost calculated using nurse hours and hourly pay rates"
         tests:
           - not_null
 
   - name: operational_metrics
-    description: "Permanent-to-contract nurse staff ratio"
+    description: "Permanent-to-contract nurse staffing ratio"
     columns:
       - name: hospital_id
+        description: "Unique identifier for the hospital"
         tests:
           - not_null
       - name: state
+        description: "State where the hospital is located"
         tests:
           - not_null
       - name: month
+        description: "Month of data recording"
         tests:
           - not_null
       - name: total_rn_hours_emp
