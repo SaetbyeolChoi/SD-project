@@ -44,17 +44,17 @@ models:
       +schema: marts
       +materialized: table  # Final tables should be stored as tables
 
-# # 📌 Specify dbt Cloud execution order
+# Specify dbt Cloud execution order
 # seeds:
 #   healthcare_dbt:
 #     +schema: seeds
 #     +quote_columns: false
 
-# # 📌 Specify Snowflake warehouse usage (optimize performance)
+# Specify Snowflake warehouse usage (optimize performance)
 # vars:
 #   snowflake_warehouse: 'COMPUTE_WH'
 
-# # 📌 Custom sources directory
+# Custom sources directory
 # sources:
 #   snowflake:
 #     database: MYDB_H
