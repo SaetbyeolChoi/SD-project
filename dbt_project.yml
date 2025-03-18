@@ -39,6 +39,7 @@ models:
   healthcare_dbt:
     staging:
       +schema: staging
+<<<<<<< HEAD
       +materialized: view  # Staging tables should be views
     marts:
       +schema: marts
@@ -59,3 +60,9 @@ models:
 #   snowflake:
 #     database: MYDB_H
 #     schema: MY_SCHEMA_H
+=======
+      +materialized: view  
+    marts:
+      +schema: marts
+      +materialized: table  
+>>>>>>> 99b4f37956aefa5b036434e5207935449aea4ded
