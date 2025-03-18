@@ -36,7 +36,7 @@ def list_csv_files(drive_service):
     #     print("No CSV files found.")
     #     return
     
-    # print("\n📂 Found CSV Files in Google Drive:")
+    # print("\n Found CSV Files in Google Drive:")
     # for file in files:
     #     print(f"- {file['name']} (ID: {file['id']})")
 
@@ -58,7 +58,7 @@ def download_file(drive_service, file_id, file_name):
     with open(file_path, "wb") as f:
         f.write(request.execute())  # Ensure file content is properly written
 
-    print(f"✅ File downloaded: {file_path} ({os.path.getsize(file_path)} bytes)")
+    print(f"File downloaded: {file_path} ({os.path.getsize(file_path)} bytes)")
     return file_path
 
 
@@ -66,7 +66,7 @@ def upload_to_s3(file_path, file_name):
     """Upload file to S3 bucket."""
     s3_key = f"raw/{file_name}"  # Save in 'raw' folder inside S3
     s3_client.upload_file(file_path, S3_BUCKET, s3_key)
-    print(f"✅ Uploaded {file_name} to s3://{S3_BUCKET}/{s3_key}")
+    print(f"Uploaded {file_name} to s3://{S3_BUCKET}/{s3_key}")
 
 def process_files():
     """Main function to download and upload CSV files."""
@@ -80,13 +80,13 @@ def process_files():
     for file in files:
         file_id = file['id']
         file_name = file['name']
-        print(f"📥 Downloading: {file_name}")
+        print(f"Downloading: {file_name}")
 
         file_path = download_file(drive_service, file_id, file_name)
         upload_to_s3(file_path, file_name)
         os.remove(file_path)  # Cleanup temporary file
 
-    print("🎉 All files processed successfully.")
+    print("All files processed successfully.")
 
 if __name__ == "__main__":
     process_files()
