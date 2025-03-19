@@ -39,23 +39,7 @@ models:
   healthcare_dbt:
     staging:
       +schema: staging
-      +materialized: view  # Staging tables should be views
+      +materialized: view  
     marts:
       +schema: marts
-      +materialized: table  # Final tables should be stored as tables
-
-# Specify dbt Cloud execution order
-# seeds:
-#   healthcare_dbt:
-#     +schema: seeds
-#     +quote_columns: false
-
-# Specify Snowflake warehouse usage (optimize performance)
-# vars:
-#   snowflake_warehouse: 'COMPUTE_WH'
-
-# Custom sources directory
-# sources:
-#   snowflake:
-#     database: MYDB_H
-#     schema: MY_SCHEMA_H
+      +materialized: table  
