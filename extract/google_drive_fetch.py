@@ -35,7 +35,20 @@ def list_csv_files(drive_service):
     # if not files:
     #     print("No CSV files found.")
     #     return
+<<<<<<< HEAD
     # print("\n Found CSV Files in Google Drive:")
+=======
+    
+<<<<<<< HEAD
+    # print("\n Found CSV Files in Google Drive:")
+=======
+<<<<<<< HEAD
+    # print("\n📂 Found CSV Files in Google Drive:")
+=======
+    # print("\n Found CSV Files in Google Drive:")
+>>>>>>> origin/main
+>>>>>>> 2f05e4468707a15f4943a08ca9aca4c1c0bc1ac2
+>>>>>>> main
     # for file in files:
     #     print(f"- {file['name']} (ID: {file['id']})")
 
@@ -57,7 +70,19 @@ def download_file(drive_service, file_id, file_name):
     with open(file_path, "wb") as f:
         f.write(request.execute())  # Ensure file content is properly written
 
+<<<<<<< HEAD
     print(f"File downloaded: {file_path} ({os.path.getsize(file_path)} bytes)")
+=======
+<<<<<<< HEAD
+    print(f"File downloaded: {file_path} ({os.path.getsize(file_path)} bytes)")
+=======
+<<<<<<< HEAD
+    print(f"✅ File downloaded: {file_path} ({os.path.getsize(file_path)} bytes)")
+=======
+    print(f"File downloaded: {file_path} ({os.path.getsize(file_path)} bytes)")
+>>>>>>> origin/main
+>>>>>>> 2f05e4468707a15f4943a08ca9aca4c1c0bc1ac2
+>>>>>>> main
     return file_path
 
 
@@ -65,7 +90,19 @@ def upload_to_s3(file_path, file_name):
     """Upload file to S3 bucket."""
     s3_key = f"raw/{file_name}"  # Save in 'raw' folder inside S3
     s3_client.upload_file(file_path, S3_BUCKET, s3_key)
+<<<<<<< HEAD
     print(f"Uploaded {file_name} to s3://{S3_BUCKET}/{s3_key}")
+=======
+<<<<<<< HEAD
+    print(f"Uploaded {file_name} to s3://{S3_BUCKET}/{s3_key}")
+=======
+<<<<<<< HEAD
+    print(f"✅ Uploaded {file_name} to s3://{S3_BUCKET}/{s3_key}")
+=======
+    print(f"Uploaded {file_name} to s3://{S3_BUCKET}/{s3_key}")
+>>>>>>> origin/main
+>>>>>>> 2f05e4468707a15f4943a08ca9aca4c1c0bc1ac2
+>>>>>>> main
 
 def process_files():
     """Main function to download and upload CSV files."""
@@ -79,13 +116,37 @@ def process_files():
     for file in files:
         file_id = file['id']
         file_name = file['name']
+<<<<<<< HEAD
         print(f"Downloading: {file_name}")
+=======
+<<<<<<< HEAD
+        print(f"Downloading: {file_name}")
+=======
+<<<<<<< HEAD
+        print(f"📥 Downloading: {file_name}")
+=======
+        print(f"Downloading: {file_name}")
+>>>>>>> origin/main
+>>>>>>> 2f05e4468707a15f4943a08ca9aca4c1c0bc1ac2
+>>>>>>> main
 
         file_path = download_file(drive_service, file_id, file_name)
         upload_to_s3(file_path, file_name)
         os.remove(file_path)  # Cleanup temporary file
 
+<<<<<<< HEAD
     print("All files processed successfully.")
+=======
+<<<<<<< HEAD
+    print("All files processed successfully.")
+=======
+<<<<<<< HEAD
+    print("🎉 All files processed successfully.")
+=======
+    print("All files processed successfully.")
+>>>>>>> origin/main
+>>>>>>> 2f05e4468707a15f4943a08ca9aca4c1c0bc1ac2
+>>>>>>> main
 
 if __name__ == "__main__":
     process_files()
